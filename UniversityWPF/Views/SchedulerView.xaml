@@ -1,0 +1,38 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UniversityWPF.Views"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="UniversityWPF.Views.SchedulerView"
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="1040">
+    <Grid Background="Beige">
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <telerik:RadScheduleView  
+                Grid.Column="0" 
+                Grid.Row="0" 
+                AppointmentsSource="{Binding Appointments}"
+                ShowAppointmentDeleteButton="True">
+            <telerik:RadScheduleView.ViewDefinitions>
+                <telerik:DayViewDefinition/>
+                <telerik:WeekViewDefinition/>
+                <telerik:MonthViewDefinition/>
+                <telerik:TimelineViewDefinition/>
+            </telerik:RadScheduleView.ViewDefinitions>
+
+            <telerik:EventToCommandBehavior.EventBindings>
+                <telerik:EventBinding Command="{Binding DeleteAppointment}" EventName="AppointmentDeleted" PassEventArgsToCommand="True" />
+                <telerik:EventBinding Command="{Binding AddAppointment}" EventName="AppointmentCreated" PassEventArgsToCommand="True" />
+            </telerik:EventToCommandBehavior.EventBindings>
+        </telerik:RadScheduleView>
+
+    </Grid>
+</UserControl>

@@ -1,0 +1,30 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UniversityWPF.Views"
+             xmlns:tr="http://schemas.telerik.com/wpf" 
+             xmlns:Reporting="clr-namespace:Telerik.Reporting;assembly=Telerik.Reporting" 
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="UniversityWPF.Views.ReportView"
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="1040">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <tr:ReportViewer x:Name="reportViewer" 
+                         Grid.Row="0" 
+                         Grid.Column="0" 
+                         ReportEngineConnection="engine=Embedded" Loaded="ReportViewer_Loaded">
+            <tr:ReportViewer.ReportSource>
+                <Reporting:UriReportSource Uri="Reports/ListOfStudentsReport.trdp"/>
+            </tr:ReportViewer.ReportSource>
+        </tr:ReportViewer>
+    </Grid>
+</UserControl>

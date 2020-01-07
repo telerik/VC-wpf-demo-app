@@ -1,0 +1,158 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UniversityWPF.Views"
+             xmlns:viewmodels="clr-namespace:UniversityWPF.ViewModels"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="UniversityWPF.Views.ChartView"
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="1040">
+    
+    <UserControl.Resources>
+        <Style TargetType="telerik:Label">
+            <Setter Property="Foreground" Value="#FF9B9B9B" />
+            <Setter Property="FontFamily" Value="Palatino Linotype" />
+            <Setter Property="VerticalAlignment" Value="Top" />
+            <Setter Property="HorizontalAlignment" Value="Center" />
+            <Setter Property="FontSize" Value="45" />
+        </Style>
+    </UserControl.Resources>
+    
+    <Grid>
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <Grid.RowDefinitions>
+            <RowDefinition Height="85"/>
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <telerik:Label Content="Students by specialties" 
+                           Grid.Row="0" 
+                           Grid.Column="0" 
+                           Grid.ColumnSpan="2" />
+
+        <telerik:RadFunnelChart x:Name="funnelChart" Palette="Material"  
+                                Grid.Row="1" Grid.Column="0" Grid.RowSpan="4" Grid.ColumnSpan="2"
+                                ClipToBounds="False" HoverMode="FadeOtherItems">
+            <telerik:FunnelSeries ItemsSource="{Binding FunnelData}" 
+                                  ValueBinding="Value"
+                                  ShowLabels="True" 
+                                  IsDynamicSlope="True" 
+                                  SegmentSpacing="10">
+
+                <telerik:FunnelSeries.LabelDefinitions>
+                    <telerik:ChartSeriesLabelDefinition HorizontalAlignment="Center"
+                                                        VerticalAlignment="Center"
+                                                        Binding="Label" />
+                    <telerik:ChartSeriesLabelDefinition HorizontalAlignment="Left"
+                                                        VerticalAlignment="Center"
+                                                        Binding="Value" />
+                </telerik:FunnelSeries.LabelDefinitions>
+
+                <telerik:FunnelSeries.LabelConnectorsSettings>
+                    <telerik:ChartSeriesLabelConnectorsSettings />
+                </telerik:FunnelSeries.LabelConnectorsSettings>
+
+                <telerik:FunnelSeries.LegendSettings>
+                    <telerik:DataPointLegendSettings TitleBinding="Label" />
+                </telerik:FunnelSeries.LegendSettings>
+                
+            </telerik:FunnelSeries>
+        </telerik:RadFunnelChart>
+
+        <telerik:Label Content="Average grades" 
+                           Grid.Row="0" 
+                           Grid.Column="2" 
+                           Grid.ColumnSpan="2" />
+        
+        <telerik:RadCartesianChart x:Name="RadCartesianChart"
+                                   Grid.Column="2"
+                                   Grid.Row="1"
+                                   Grid.RowSpan="4"
+                                   Grid.ColumnSpan="2"
+                                   Palette="Material">
+
+            <telerik:BarSeries ItemsSource="{Binding B1}"
+                               ValueBinding="Grade"
+                               CategoryBinding="SpecialtyName"
+                               ShowLabels="True">
+                <telerik:BarSeries.LegendSettings>
+                    <telerik:SeriesLegendSettings Title="Algebra" />
+                </telerik:BarSeries.LegendSettings>
+
+                <telerik:BarSeries.PointAnimation>
+                    <telerik:ChartMoveAnimation Delay="0:0:0.325" Duration="0:0:1.55" MoveAnimationType="Bottom">
+                        <telerik:ChartMoveAnimation.Easing>
+                            <BounceEase EasingMode="EaseIn" Bounces="20" Bounciness="5" />
+                        </telerik:ChartMoveAnimation.Easing>
+                    </telerik:ChartMoveAnimation>
+                </telerik:BarSeries.PointAnimation>
+            </telerik:BarSeries>
+            
+            <telerik:BarSeries ItemsSource="{Binding B2}"
+                               ValueBinding="Grade"
+                               CategoryBinding="SpecialtyName"
+                               ShowLabels="True">
+                <telerik:BarSeries.LegendSettings>
+                    <telerik:SeriesLegendSettings Title="Programming" />
+                </telerik:BarSeries.LegendSettings>
+
+                <telerik:BarSeries.PointAnimation>
+                    <telerik:ChartMoveAnimation Delay="0:0:0.325" Duration="0:0:1.55" MoveAnimationType="Bottom">
+                        <telerik:ChartMoveAnimation.Easing>
+                            <BounceEase EasingMode="EaseIn" Bounces="20" Bounciness="5" />
+                        </telerik:ChartMoveAnimation.Easing>
+                    </telerik:ChartMoveAnimation>
+                </telerik:BarSeries.PointAnimation>
+            </telerik:BarSeries>
+            
+            <telerik:BarSeries ItemsSource="{Binding B3}"
+                               ValueBinding="Grade"
+                               CategoryBinding="SpecialtyName"
+                               ShowLabels="True">
+                <telerik:BarSeries.LegendSettings>
+                    <telerik:SeriesLegendSettings Title="Physics" />
+                </telerik:BarSeries.LegendSettings>
+
+                <telerik:BarSeries.PointAnimation>
+                    <telerik:ChartMoveAnimation Delay="0:0:0.325" Duration="0:0:1.55" MoveAnimationType="Bottom">
+                        <telerik:ChartMoveAnimation.Easing>
+                            <BounceEase EasingMode="EaseIn" Bounces="20" Bounciness="5" />
+                        </telerik:ChartMoveAnimation.Easing>
+                    </telerik:ChartMoveAnimation>
+                </telerik:BarSeries.PointAnimation>
+            </telerik:BarSeries>
+
+            <telerik:RadCartesianChart.HorizontalAxis>
+                <telerik:CategoricalAxis FontFamily="Segoe UI"
+										 FontSize="12"
+                                         Title="Specialties" />
+            </telerik:RadCartesianChart.HorizontalAxis>
+
+            <telerik:RadCartesianChart.VerticalAxis>
+                <telerik:LinearAxis FontFamily="Segoe UI"
+									FontSize="12"
+									Title="Grades" 
+									Minimum="0"
+									Maximum="100" />
+            </telerik:RadCartesianChart.VerticalAxis>
+        </telerik:RadCartesianChart>
+
+
+        <telerik:RadLegend  Grid.Row="1"
+                            Grid.Column="3"
+							Items="{Binding LegendItems, ElementName=RadCartesianChart}"
+							Foreground="#FF767676"
+							FontFamily="Segoe UI"
+                            HorizontalAlignment="Left" />
+    </Grid>
+</UserControl>

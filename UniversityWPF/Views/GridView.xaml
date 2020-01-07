@@ -1,0 +1,42 @@
+﻿<UserControl
+             xmlns="http://schemas.microsoft.com/winfx/2006/xaml/presentation"
+             xmlns:x="http://schemas.microsoft.com/winfx/2006/xaml"
+             xmlns:mc="http://schemas.openxmlformats.org/markup-compatibility/2006" 
+             xmlns:d="http://schemas.microsoft.com/expression/blend/2008" 
+             xmlns:local="clr-namespace:UniversityWPF.Views"
+             xmlns:telerik="http://schemas.telerik.com/2008/xaml/presentation" x:Class="UniversityWPF.Views.GridView"
+             xmlns:i="clr-namespace:Microsoft.Windows.Design.Interaction;assembly=Microsoft.Windows.Design.Interaction"
+             mc:Ignorable="d" 
+             d:DesignHeight="750" d:DesignWidth="1040">
+    <Grid>
+        <Grid.RowDefinitions>
+            <RowDefinition />
+        </Grid.RowDefinitions>
+
+        <Grid.ColumnDefinitions>
+            <ColumnDefinition />
+        </Grid.ColumnDefinitions>
+
+        <telerik:RadGridView Grid.Row="0" 
+                             Grid.Column="0" 
+                             ItemsSource="{Binding Path=Students, Mode=TwoWay}" 
+                             GroupRenderMode="Flat" 
+                             NewRowPosition="Bottom" 
+                             ColumnWidth="*"
+                             x:Name="radGridView">
+            <telerik:RadContextMenu.ContextMenu>
+                <telerik:RadContextMenu/>
+            </telerik:RadContextMenu.ContextMenu>
+            <telerik:EventToCommandBehavior.EventBindings>
+                <telerik:EventBinding Command="{Binding AddStudentCommand}" EventName="RowEditEnded" PassEventArgsToCommand="True" />
+                <telerik:EventBinding Command="{Binding DeleteStudentCommand}" EventName="Deleting" PassEventArgsToCommand="True" />
+            </telerik:EventToCommandBehavior.EventBindings>
+        </telerik:RadGridView>
+
+        <telerik:RadDataPager x:Name="radDataPager" 
+                          Source="{Binding Items, ElementName=radGridView}" 
+                          PageSize="10" 
+                          VerticalAlignment="Bottom" />
+
+    </Grid>
+</UserControl>
